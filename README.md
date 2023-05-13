@@ -24,7 +24,7 @@
 
 ##### Arquitetura da API SM.People (Store Management) - Gestão de Loja
 
-SM.Catalog
+SM.People
 <br/>-Core
 <br/>&nbsp; -SM.People.Core.Application
 <br/>&nbsp; -SM.People.Core.Domain
