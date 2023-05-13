@@ -16,8 +16,8 @@ namespace SM.People.Core.Domain.Entities
         public string? NRLE { get; private set; }
         public string? StateRegistration { get; private set; }
         public string? CellPhone { get; private set; }
-        public Email? Email { get; private set; }
-        public Address? Address { get; private set; }
+        public Email Email { get; private set; }
+        public Address Address { get; private set; }
 
         public Supplier() { }
 
@@ -27,8 +27,8 @@ namespace SM.People.Core.Domain.Entities
             string? nrle,
             string? stateRegistration,
             string? cellPhone,
-            Email? email,
-            Address? address) : this()
+            Email email,
+            Address address) : this()
         {
             CorporateName = corporateName;
             FantasyName = fantasyName;

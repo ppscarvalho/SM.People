@@ -3,25 +3,25 @@
 using AutoMapper;
 using MediatR;
 using SM.MQ.Models;
-using SM.MQ.Models.Supplier;
+using SM.MQ.Models.Customer;
 using SM.MQ.Operators;
-using SM.People.Core.Application.Commands.Supplier;
+using SM.People.Core.Application.Commands.Customer;
 using SM.People.Core.Application.Models;
-using SM.People.Core.Application.Queries.Supplier;
+using SM.People.Core.Application.Queries.Customer;
 using SM.Resource.Communication.Mediator;
 using SM.Resource.Messagens.CommonMessage.Notifications;
 using SM.Util.Extensions;
 
 namespace SM.People.Core.Application.Consumers
 {
-    public class RPCConsumerSupplier : Consumer<RequestIn>
+    public class RPCConsumerCustomer : Consumer<RequestIn>
     {
         private readonly IMediatorHandler _mediatorHandler;
         private readonly IMapper _mapper;
         private readonly IMediator _mediatorQuery;
         private readonly DomainNotificationHandler _notifications;
 
-        public RPCConsumerSupplier(
+        public RPCConsumerCustomer(
             IMapper mapper,
             IMediatorHandler mediatorHandler,
             INotificationHandler<DomainNotification> notifications,
@@ -37,46 +37,46 @@ namespace SM.People.Core.Application.Consumers
         {
             switch (context.Message.Queue)
             {
-                case "GetSupplierById":
-                    await GetSupplierById(context);
+                case "GetCustomerById":
+                    await GetCustomerById(context);
                     break;
 
-                case "GetAllSupplier":
-                    await GetAllSupplier(context);
+                case "GetAllCustomer":
+                    await GetAllCustomer(context);
                     break;
 
-                case "AddSupplier":
-                    await AddSupplier(context);
+                case "AddCustomer":
+                    await AddCustomer(context);
                     break;
 
-                case "UpdateSupplier":
-                    await UpdateSupplier(context);
+                case "UpdateCustomer":
+                    await UpdateCustomer(context);
                     break;
 
                 default:
-                    await GetAllSupplier(context);
+                    await GetAllCustomer(context);
                     break;
             }
         }
 
-        private async Task GetSupplierById(ConsumerContext<RequestIn> context)
+        private async Task GetCustomerById(ConsumerContext<RequestIn> context)
         {
             var id = Guid.Parse(context.Message.Result);
-            var query = new GetSupplierByIdQuery(id);
-            var result = _mapper.Map<ResponseSupplierOut>(await _mediatorQuery.Send(query));
+            var query = new GetCustomerByIdQuery(id);
+            var result = _mapper.Map<ResponseCustomerOut>(await _mediatorQuery.Send(query));
             await context.RespondAsync(result);
         }
-        private async Task GetAllSupplier(ConsumerContext<RequestIn> context)
+        private async Task GetAllCustomer(ConsumerContext<RequestIn> context)
         {
-            var result = _mapper.Map<IEnumerable<ResponseSupplierOut>>(await _mediatorQuery.Send(new GetAllSupplierQuery()));
+            var result = _mapper.Map<IEnumerable<ResponseCustomerOut>>(await _mediatorQuery.Send(new GetAllCustomerQuery()));
             await context.RespondAsync(result.ToArray());
         }
 
-        private async Task AddSupplier(ConsumerContext<RequestIn> context)
+        private async Task AddCustomer(ConsumerContext<RequestIn> context)
         {
-            var SupplierModel = context.Message.Result.DeserializeObject<SupplierModel>();
+            var CustomerModel = context.Message.Result.DeserializeObject<CustomerModel>();
 
-            var command = _mapper.Map<AddSupplierCommand>(SupplierModel);
+            var command = _mapper.Map<AddCustomerCommand>(CustomerModel);
             var result = await _mediatorHandler.SendCommand(command);
 
             if (result.Success)
@@ -89,11 +89,11 @@ namespace SM.People.Core.Application.Consumers
             }
         }
 
-        private async Task UpdateSupplier(ConsumerContext<RequestIn> context)
+        private async Task UpdateCustomer(ConsumerContext<RequestIn> context)
         {
-            var categoriaModel = context.Message.Result.DeserializeObject<SupplierModel>();
+            var categoriaModel = context.Message.Result.DeserializeObject<CustomerModel>();
 
-            var command = _mapper.Map<UpdateSupplierCommand>(categoriaModel);
+            var command = _mapper.Map<UpdateCustomerCommand>(categoriaModel);
             var result = await _mediatorHandler.SendCommand(command);
 
             if (result.Success)

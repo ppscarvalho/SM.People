@@ -13,6 +13,7 @@ namespace SM.People.Infrastructure.DbContexts
     {
         private readonly IMediatorHandler _mediatorHandler;
         public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public PeopleDbContext(DbContextOptions<PeopleDbContext> options, IMediatorHandler mediatorHandler)
                 : base(options)

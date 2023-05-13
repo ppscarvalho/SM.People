@@ -44,6 +44,7 @@ namespace SM.People.Infrastructure.Extensions
         private static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
     }
 }

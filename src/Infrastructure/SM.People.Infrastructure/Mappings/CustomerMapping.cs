@@ -4,29 +4,25 @@ using SM.People.Core.Domain.Entities;
 
 namespace SM.People.Infrastructure.Mappings
 {
-    public class SupplierMapping : IEntityTypeConfiguration<Supplier>
+    public class CustomerMapping : IEntityTypeConfiguration<Customer>
     {
-        public void Configure(EntityTypeBuilder<Supplier> builder)
+        public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder.ToTable("Supplier");
+            builder.ToTable("Customer");
 
-            builder.Property(c => c.CorporateName)
+            builder.Property(c => c.FirstName)
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(c => c.FantasyName)
+            builder.Property(c => c.LastName)
                 .HasMaxLength(100)
                 .IsRequired();
-
-            builder.Property(c => c.NRLE)
-                .HasMaxLength(20)
-                .IsRequired();
-
-            builder.Property(c => c.StateRegistration)
-                .HasMaxLength(100);
 
             builder.Property(c => c.CellPhone)
                 .HasMaxLength(20)
+                .IsRequired();
+
+            builder.Property(c => c.Birthday)
                 .IsRequired();
 
             builder.OwnsOne(s => s.Email, em =>

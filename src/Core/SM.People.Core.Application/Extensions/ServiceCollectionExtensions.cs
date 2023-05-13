@@ -7,10 +7,12 @@ using SM.MQ.Configuration;
 using SM.MQ.Extensions;
 using SM.MQ.Models;
 using SM.People.Core.Application.AutoMappings;
+using SM.People.Core.Application.Commands.Customer;
 using SM.People.Core.Application.Commands.Supplier;
 using SM.People.Core.Application.Consumers;
 using SM.People.Core.Application.Handlers;
 using SM.People.Core.Application.Models;
+using SM.People.Core.Application.Queries.Customer;
 using SM.People.Core.Application.Queries.Supplier;
 using SM.Resource.Communication.Mediator;
 using SM.Resource.Util;
@@ -34,9 +36,15 @@ namespace SM.People.Core.Application.Extensions
             services.AddScoped<IRequestHandler<GetSupplierByIdQuery, SupplierModel>, SupplierQueryHandler>();
             services.AddScoped<IRequestHandler<GetAllSupplierQuery, IEnumerable<SupplierModel>>, SupplierQueryHandler>();
 
+            services.AddScoped<IRequestHandler<GetCustomerByIdQuery, CustomerModel>, CustomerQueryHandler>();
+            services.AddScoped<IRequestHandler<GetAllCustomerQuery, IEnumerable<CustomerModel>>, CustomerQueryHandler>();
+
             // Command
             services.AddScoped<IRequestHandler<AddSupplierCommand, DefaultResult>, SupplierCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateSupplierCommand, DefaultResult>, SupplierCommandHandler>();
+
+            services.AddScoped<IRequestHandler<AddCustomerCommand, DefaultResult>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCustomerCommand, DefaultResult>, CustomerCommandHandler>();
 
             // RabbitMQ
             services.AddRabbitMq(configuration);
@@ -52,12 +60,18 @@ namespace SM.People.Core.Application.Extensions
                         queue: configuration["RabbitMq:ConsumerSupplier"],
                         typeConsumer: typeof(RPCConsumerSupplier),
                         quorumQueue: true
+                    ),
+                    new Consumer(
+                        queue: configuration["RabbitMq:ConsumerCustomer"],
+                        typeConsumer: typeof(RPCConsumerCustomer),
+                        quorumQueue: true
                     )
                 },
 
                 Publishers = new HashSet<IPublisher>
                 {
-                    new Publisher<RequestIn>(queue: configuration["RabbitMq:ConsumerSupplier"])
+                    new Publisher<RequestIn>(queue: configuration["RabbitMq:ConsumerSupplier"]),
+                    new Publisher<RequestIn>(queue: configuration["RabbitMq:ConsumerCustomer"])
                 },
 
                 Retry = new Retry(retryCount: 3, interval: TimeSpan.FromSeconds(60))

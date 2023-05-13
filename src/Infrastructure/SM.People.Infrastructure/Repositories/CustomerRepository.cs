@@ -8,37 +8,37 @@ using SM.Resource.Data;
 
 namespace SM.People.Infrastructure.Repositories
 {
-    public class SupplierRepository : ISupplierRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly PeopleDbContext _context;
         private bool disposedValue;
 
-        public SupplierRepository(PeopleDbContext context)
+        public CustomerRepository(PeopleDbContext context)
         {
             _context = context;
         }
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public async Task<IEnumerable<Supplier>> GetAllSupplier()
+        public async Task<IEnumerable<Customer>> GetAllCustomer()
         {
-            return await _context.Supplier.AsNoTracking().ToListAsync();
+            return await _context.Customers.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Supplier> GetSupplierById(Guid id)
+        public async Task<Customer> GetCustomerById(Guid id)
         {
-            return await _context.Supplier.FirstOrDefaultAsync(e => e.Id == id);
+            return await _context.Customers.FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<Supplier> AddSupplier(Supplier Supplier)
+        public async Task<Customer> AddCustomer(Customer Customer)
         {
-            return (await _context.AddAsync(Supplier)).Entity;
+            return (await _context.AddAsync(Customer)).Entity;
         }
 
-        public async Task<Supplier> UpdateSupplier(Supplier Supplier)
+        public async Task<Customer> UpdateCustomer(Customer Customer)
         {
             await Task.CompletedTask;
-            return (_context.Supplier.Update(Supplier)).Entity;
+            return (_context.Customers.Update(Customer)).Entity;
         }
 
         protected virtual void Dispose(bool disposing)

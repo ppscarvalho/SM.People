@@ -40,7 +40,9 @@ namespace SM.People.Core.Application.Commands.Supplier.Validation
 
             RuleFor(a => a.State)
                 .NotEmpty()
-                .WithMessage("O Estado do fornecedor não foi informado.");
+                .WithMessage("O Estado do fornecedor não foi informado.")
+                .MaximumLength(2)
+                .WithMessage("Informe somente a sigla do Estado.");
         }
     }
 }
