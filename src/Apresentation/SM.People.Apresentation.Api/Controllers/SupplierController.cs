@@ -45,7 +45,7 @@ namespace SM.Catalog.Apresentation.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetAllSupplier")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(SupplierModel), StatusCodes.Status200OK)]
