@@ -26,11 +26,9 @@ namespace SM.People.Infrastructure.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("Birthday")
-                        .IsRequired()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CellPhone")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
@@ -68,7 +66,6 @@ namespace SM.People.Infrastructure.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("CellPhone")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
@@ -116,31 +113,26 @@ namespace SM.People.Infrastructure.Migrations
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("City")
-                                .IsRequired()
                                 .HasMaxLength(60)
                                 .HasColumnType("varchar(60)")
                                 .HasColumnName("City");
 
                             b1.Property<string>("District")
-                                .IsRequired()
                                 .HasMaxLength(60)
                                 .HasColumnType("varchar(60)")
                                 .HasColumnName("District");
 
                             b1.Property<string>("PublicPlace")
-                                .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("varchar(100)")
                                 .HasColumnName("PublicPlace");
 
                             b1.Property<string>("State")
-                                .IsRequired()
                                 .HasMaxLength(2)
                                 .HasColumnType("varchar(2)")
                                 .HasColumnName("State");
 
                             b1.Property<string>("ZipCode")
-                                .IsRequired()
                                 .HasMaxLength(13)
                                 .HasColumnType("varchar(13)")
                                 .HasColumnName("ZipCode");
@@ -171,11 +163,9 @@ namespace SM.People.Infrastructure.Migrations
                                 .HasForeignKey("CustomerId");
                         });
 
-                    b.Navigation("Address")
-                        .IsRequired();
+                    b.Navigation("Address");
 
-                    b.Navigation("Email")
-                        .IsRequired();
+                    b.Navigation("Email");
                 });
 
             modelBuilder.Entity("SM.People.Core.Domain.Entities.Supplier", b =>
@@ -186,31 +176,26 @@ namespace SM.People.Infrastructure.Migrations
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("City")
-                                .IsRequired()
                                 .HasMaxLength(60)
                                 .HasColumnType("varchar(60)")
                                 .HasColumnName("City");
 
                             b1.Property<string>("District")
-                                .IsRequired()
                                 .HasMaxLength(60)
                                 .HasColumnType("varchar(60)")
                                 .HasColumnName("District");
 
                             b1.Property<string>("PublicPlace")
-                                .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("varchar(100)")
                                 .HasColumnName("PublicPlace");
 
                             b1.Property<string>("State")
-                                .IsRequired()
                                 .HasMaxLength(2)
                                 .HasColumnType("varchar(2)")
                                 .HasColumnName("State");
 
                             b1.Property<string>("ZipCode")
-                                .IsRequired()
                                 .HasMaxLength(13)
                                 .HasColumnType("varchar(13)")
                                 .HasColumnName("ZipCode");
@@ -229,8 +214,7 @@ namespace SM.People.Infrastructure.Migrations
                                 .HasColumnType("char(36)");
 
                             b1.Property<string>("EmailAddress")
-                                .HasMaxLength(100)
-                                .HasColumnType("varchar(100)")
+                                .HasColumnType("longtext")
                                 .HasColumnName("Email");
 
                             b1.HasKey("SupplierId");
@@ -241,11 +225,9 @@ namespace SM.People.Infrastructure.Migrations
                                 .HasForeignKey("SupplierId");
                         });
 
-                    b.Navigation("Address")
-                        .IsRequired();
+                    b.Navigation("Address");
 
-                    b.Navigation("Email")
-                        .IsRequired();
+                    b.Navigation("Email");
                 });
 #pragma warning restore 612, 618
         }

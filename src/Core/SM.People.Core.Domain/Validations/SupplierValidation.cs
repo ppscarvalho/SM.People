@@ -18,34 +18,6 @@ namespace SM.People.Core.Domain.Validations
             RuleFor(c => c.FantasyName)
                 .NotEmpty()
                 .WithMessage("O Nome de Fantasia do fornecedor não foi informado.");
-
-            RuleFor(c => c.NRLE)
-                .NotEmpty()
-                .WithMessage("O CNPJ do fornecedor não foi informado.");
-
-            RuleFor(c => c.CellPhone)
-                .NotEmpty()
-                .WithMessage("O Celular do fornecedor não foi informado.");
-
-            RuleFor(a => a.Address.PublicPlace)
-                .NotEmpty()
-                .WithMessage("O Logradouro do fornecedor não foi informado.");
-
-            RuleFor(a => a.Address.District)
-                .NotEmpty()
-                .WithMessage("O Bairro do fornecedor não foi informado.");
-
-            RuleFor(a => a.Address.District)
-                .NotEmpty()
-                .WithMessage("A Cidade do fornecedor não foi informada.");
-
-            RuleFor(a => a.Address.ZipCode)
-                .NotEmpty()
-                .WithMessage("O CEP do fornecedor não foi informado.");
-
-            RuleFor(a => a.Address.State)
-                .NotEmpty()
-                .WithMessage("O Estado do fornecedor não foi informado.");
         }
     }
 }

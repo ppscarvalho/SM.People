@@ -45,7 +45,7 @@ namespace SM.Catalog.Apresentation.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetAllCustomer")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(CustomerModel), StatusCodes.Status200OK)]

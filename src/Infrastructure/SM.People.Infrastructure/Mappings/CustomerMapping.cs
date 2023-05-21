@@ -19,11 +19,9 @@ namespace SM.People.Infrastructure.Mappings
                 .IsRequired();
 
             builder.Property(c => c.CellPhone)
-                .HasMaxLength(20)
-                .IsRequired();
+                .HasMaxLength(20);
 
-            builder.Property(c => c.Birthday)
-                .IsRequired();
+            builder.Property(c => c.Birthday);
 
             builder.OwnsOne(s => s.Email, em =>
             {
@@ -36,28 +34,23 @@ namespace SM.People.Infrastructure.Mappings
             {
                 cm.Property(c => c.PublicPlace)
                 .HasColumnName("PublicPlace")
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
                 cm.Property(c => c.District)
                 .HasColumnName("District")
-                .HasMaxLength(60)
-                .IsRequired();
+                .HasMaxLength(60);
 
                 cm.Property(c => c.City)
                 .HasColumnName("City")
-                .HasMaxLength(60)
-                .IsRequired();
+                .HasMaxLength(60);
 
                 cm.Property(c => c.ZipCode)
                 .HasColumnName("ZipCode")
-                .HasMaxLength(13)
-                .IsRequired();
+                .HasMaxLength(13);
 
                 cm.Property(c => c.State)
                 .HasColumnName("State")
-                .HasMaxLength(2)
-                .IsRequired();
+                .HasMaxLength(2);
             });
         }
     }

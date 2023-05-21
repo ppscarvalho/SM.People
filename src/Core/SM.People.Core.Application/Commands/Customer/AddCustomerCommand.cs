@@ -5,7 +5,7 @@ namespace SM.People.Core.Application.Commands.Customer
 {
     public class AddCustomerCommand : CommandHandler
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; private set; }
         public string? FirstName { get; private set; }
         public string? LastName { get; private set; }
         public string? CellPhone { get; private set; }

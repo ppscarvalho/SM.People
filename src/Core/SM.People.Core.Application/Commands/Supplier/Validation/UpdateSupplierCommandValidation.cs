@@ -13,36 +13,6 @@ namespace SM.People.Core.Application.Commands.Supplier.Validation
             RuleFor(c => c.FantasyName)
                 .NotEmpty()
                 .WithMessage("O Nome de Fantasia do fornecedor não foi informado.");
-
-            RuleFor(c => c.NRLE)
-                .NotEmpty()
-                .WithMessage("O CNPJ do fornecedor não foi informado.");
-
-            RuleFor(c => c.CellPhone)
-                .NotEmpty()
-                .WithMessage("O Celular do fornecedor não foi informado.");
-
-            RuleFor(a => a.PublicPlace)
-                .NotEmpty()
-                .WithMessage("O Logradouro do fornecedor não foi informado.");
-
-            RuleFor(a => a.District)
-                .NotEmpty()
-                .WithMessage("O Bairro do fornecedor não foi informado.");
-
-            RuleFor(a => a.District)
-                .NotEmpty()
-                .WithMessage("A Cidade do fornecedor não foi informada.");
-
-            RuleFor(a => a.ZipCode)
-                .NotEmpty()
-                .WithMessage("O CEP do fornecedor não foi informado.");
-
-            RuleFor(a => a.State)
-                .NotEmpty()
-                .WithMessage("O Estado do fornecedor não foi informado.")
-                .MaximumLength(2)
-                .WithMessage("Informe somente a sigla do Estado.");
         }
     }
 }

@@ -5,7 +5,7 @@ namespace SM.People.Core.Application.Commands.Supplier
 {
     public class AddSupplierCommand : CommandHandler
     {
-        public Guid Id { get; private set; }
+        public Guid? Id { get; private set; }
         public string? CorporateName { get; private set; }
         public string? FantasyName { get; private set; }
         public string? NRLE { get; private set; }
@@ -20,7 +20,7 @@ namespace SM.People.Core.Application.Commands.Supplier
 
         public AddSupplierCommand() { }
 
-        public AddSupplierCommand(Guid id,
+        public AddSupplierCommand(Guid? id,
             string? corporateName,
             string? fantasyName,
             string? nrle,
